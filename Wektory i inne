@@ -1,0 +1,56 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <cstdlib>
+#include <ctime>
+#include <numeric>
+// <--- Tutaj można wkleić "using namespace; std"
+const int ARRAY_SIZE = 25;
+
+int main() {
+    // Inicjalizacja generatora liczb pseudolosowych
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+    
+    // Wektor przechowujący wygenerowane liczby losowe
+    std::vector<int> random_numbers;
+    
+    // Generowanie i zapisywanie liczb losowych do wektora
+    for (int i = 0; i < ARRAY_SIZE; ++i) {
+        random_numbers.push_back(std::rand() % 100); // Zakres od 0 do 99
+    }
+    
+    // Wyświetlenie wygenerowanych liczb przed sortowaniem
+    std::cout << "Wylosowane liczby przed sortowaniem: ";
+    for (int num : random_numbers) {
+        std::cout << num << " ";
+    }
+    std::cout << std::endl;
+    
+    // Sortowanie wygenerowanych liczb
+    std::sort(random_numbers.begin(), random_numbers.end());
+    
+    // Usuwanie duplikatów
+    random_numbers.erase(std::unique(random_numbers.begin(), random_numbers.end()), random_numbers.end());
+    
+    // Wyświetlenie posortowanych i unikalnych liczb
+    std::cout << "Wylosowane unikalne liczby po sortowaniu: ";
+    for (int num : random_numbers) {
+        std::cout << num << " ";
+    }
+    std::cout << std::endl;
+    
+    // Obliczenie średniej
+    double average = static_cast<double>(std::accumulate(random_numbers.begin(), random_numbers.end(), 0)) / random_numbers.size();
+    
+    // Znalezienie wartości minimalnej i maksymalnej
+    int min_value = *std::min_element(random_numbers.begin(), random_numbers.end());
+    int max_value = *std::max_element(random_numbers.begin(), random_numbers.end());
+    
+    // Wyświetlenie wyników
+    std::cout << "Srednia: " << average << std::endl;
+    std::cout << "Wartosc minimalna: " << min_value << std::endl;
+    std::cout << "Wartosc maksymalna: " << max_value << std::endl;
+    
+    return 0;
+}
+
