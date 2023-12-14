@@ -1,0 +1,33 @@
+#include <iostream>
+#include <cmath>
+
+void obliczPierwiastki(double a, double b, double c) {
+    double delta = b * b - 4 * a * c;
+
+    if (delta > 0) {
+        double x1 = (-b + sqrt(delta)) / (2 * a);
+        double x2 = (-b - sqrt(delta)) / (2 * a);
+
+        std::cout << "x1 = " << x1 << ", x2 = " << x2 << std::endl;
+    } else if (delta == 0) {
+        double x0 = -b / (2 * a);
+        std::cout << "x0 = " << x0 << std::endl;
+    } else {
+        std::cout << "Delta jest mniejsza od zera, brak miejsc zerowych." << std::endl;
+    }
+}
+
+int main() {
+    double a, b, c;
+
+    do {
+        std::cout << "Podaj wspolczynniki a, b i c (a nie moze byc rowne zero): ";
+        std::cin >> a;
+    } while (a == 0);
+
+    std::cin >> b >> c;
+
+    obliczPierwiastki(a, b, c);
+
+    return 0;
+}
